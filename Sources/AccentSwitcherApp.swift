@@ -10,6 +10,7 @@ final class SwitcherModel: ObservableObject {
     @Published var canRestore = false
     @Published var status = ""
     @Published var errorMessage: String?
+    @Published var isRestarting = false
 
     init() {
         refresh()
@@ -44,6 +45,22 @@ final class SwitcherModel: ObservableObject {
         update("Original accent restored. Reopen any apps that still show the old color.") { try store.restore() }
     }
 
+    func restartSystemApps() {
+        guard !isRestarting else { return }
+        isRestarting = true
+        status = NSLocalizedString("Restarting Dock, System Settings, and Finder…", comment: "")
+        Task {
+            let failed = await SystemAppRestart.run()
+            if failed.isEmpty {
+                status = NSLocalizedString("Dock, System Settings, and Finder restarted.", comment: "")
+            } else {
+                let format = NSLocalizedString("Could not restart: %@.", comment: "")
+                status = String(format: format, ListFormatter.localizedString(byJoining: failed))
+            }
+            isRestarting = false
+        }
+    }
+
     private func update(_ message: String, operation: () throws -> Void) {
         defer { refresh() }
         do {
@@ -74,6 +91,9 @@ struct AccentSwitcherApp: App {
 
 struct PaletteView: View {
     @ObservedObject var model: SwitcherModel
+    // Use the property wrapper so standalone Command Line Tools need no SwiftUI macro plugin.
+    private typealias LocalState<Value> = State<Value>
+    @LocalState private var confirmRestart = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -108,6 +128,10 @@ struct PaletteView: View {
                     }
                 }
             }
+            Button("Force Restart Dock, System Settings, and Finder", systemImage: "arrow.clockwise") {
+                confirmRestart = true
+            }
+            .disabled(model.isRestarting)
             if !model.status.isEmpty {
                 Text(model.status)
                     .font(.caption).foregroundStyle(.secondary)
@@ -134,6 +158,12 @@ struct PaletteView: View {
             Button("OK", role: .cancel) { model.errorMessage = nil }
         } message: {
             Text(model.errorMessage ?? "")
+        }
+        .alert("Force restart these apps?", isPresented: $confirmRestart) {
+            Button("Cancel", role: .cancel) {}
+            Button("Force Restart", role: .destructive, action: model.restartSystemApps)
+        } message: {
+            Text("Finder windows will close briefly, and Finder file transfers may be interrupted.")
         }
     }
 
