@@ -1,0 +1,22 @@
+name: Build and test
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [macos-15, macos-15-intel, macos-26]
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash build.sh --zip
+      - run: bash test.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MacAccentSwitcher-${{ matrix.runner }}
+          path: dist/MacAccentSwitcher.zip
