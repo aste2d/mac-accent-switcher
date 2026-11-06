@@ -18,3 +18,14 @@
 "The change could not be verified. The saved backup is still available." = "无法验证更改，原配色备份仍可使用。";
 "The saved backup could not be read." = "无法读取原配色备份。";
 "OK" = "好";
+"Force Restart Dock, System Settings, and Finder" = "强制重启程序坞、系统设置和访达";
+"Force restart these apps?" = "要强制重启这三个应用吗？";
+"Finder windows will close briefly, and Finder file transfers may be interrupted." = "访达窗口会暂时关闭，正在通过访达传输的文件可能会中断。";
+"Cancel" = "取消";
+"Force Restart" = "强制重启";
+"Restarting Dock, System Settings, and Finder…" = "正在重启程序坞、系统设置和访达…";
+"Dock, System Settings, and Finder restarted." = "已重启程序坞、系统设置和访达。";
+"Could not restart: %@." = "未能重启：%@。";
+"Dock" = "程序坞";
+"System Settings" = "系统设置";
+"Finder" = "访达";
