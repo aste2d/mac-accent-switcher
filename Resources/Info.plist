@@ -8,8 +8,8 @@
   <key>CFBundleIdentifier</key><string>io.github.aste2d.mac-accent-switcher</string>
   <key>CFBundleName</key><string>Mac Accent Switcher</string>
   <key>CFBundlePackageType</key><string>APPL</string>
-  <key>CFBundleShortVersionString</key><string>1.0.0</string>
-  <key>CFBundleVersion</key><string>1</string>
+  <key>CFBundleShortVersionString</key><string>1.0.1</string>
+  <key>CFBundleVersion</key><string>2</string>
   <key>LSApplicationCategoryType</key><string>public.app-category.utilities</string>
   <key>LSMinimumSystemVersion</key><string>15.0</string>
   <key>NSHumanReadableCopyright</key><string>Copyright © 2026 aste2d</string>
