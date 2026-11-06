@@ -9,6 +9,7 @@ Click a swatch to use an iMac or MacBook Neo system accent color. Restore your p
 1. Open **Mac Accent Switcher.app** and click a swatch. The palette is also available from the paint palette icon in the menu bar.
 2. Choose **Restore Original** to return to the preferences saved before the first switch. The backup persists between launches. Subsequent switches keep the same original.
 3. If an app still shows the old color, quit and reopen that app. **Open Appearance** opens System Settings so you can check the **This Mac** swatch.
+4. **Force Restart Dock, System Settings, and Finder** restarts all three apps after confirmation so they can reload the accent. Wait for any Finder file transfers to finish before using it.
 
 macOS 15 Sequoia, 26 Tahoe, and 27 Golden Gate are the target versions. The app is universal (Apple silicon and Intel on versions that support Intel). iMac colors use IDs 3–8. MacBook Neo colors use IDs 15–17 and need a build with those colors, starting with macOS 26.3.1. The app checks each color against AppKit at launch and disables unavailable swatches. On some hardware or OS builds, running apps may only pick up the new color after relaunch.
 
