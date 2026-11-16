@@ -31,3 +31,5 @@ The app writes three preferences in the current user's global defaults domain: `
 The palette was sampled from AppKit in sRGB. See the [iMac color mapping](https://georgegarside.com/blog/macos/imac-m1-accent-colours-any-mac/) and [MacBook Neo color mapping](https://forums.macrumors.com/threads/macbook-neo-hardware-accent-colors.2478747/).
 
 MIT © 2026 aste2d
+
+喜欢这个项目？欢迎[请我喝杯咖啡](https://afdian.com/a/aste2d/plan)，支持后续维护。
